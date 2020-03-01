@@ -1,0 +1,111 @@
+/* pages/order/order.wxss */
+
+.myContent .van-tabs__wrap--scrollable .van-tab {
+  -webkit-flex: 0 0 20%;
+  flex: 0 0 20%;
+  flex-basis: 20% !important;
+}
+
+.myContent .footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.myContent .footer .btn {
+  width: 200rpx;
+  border: 1rpx solid #333;
+  display: inline-block;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-left: 20rpx;
+  color: #333;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.myContent .footer .btn.payment {
+  background-color: #333;
+  color: #fff;
+}
+
+.myContent .content-box .van-card{
+  padding: 40rpx 16px;
+}
+
+.myContent .content-box .van-card__thumb{
+  width: 33.333333%;
+  padding-right: 16px;
+  margin-right: 0rpx;
+}
+
+.myContent .content-box .van-card__thumb image{
+  border: 1px solid #eee;
+}
+
+.myContent .content-box .van-card__title {
+  font-size: 32rpx;
+  color: #333;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 20rpx;
+}
+
+.myContent .content-box .van-card__desc {
+  font-size: 28rpx;
+}
+
+.myContent .content-box .van-card__price {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.myContent .content-box .van-card__num {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.myContent .content-box .van-card {
+  background-color: #fff !important;
+}
+
+.myContent .content-box .van-card__bottom {
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+}
+
+.myContent .result {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  padding: 10px 16px;
+}
+
+.myContent .result::after {
+  position: absolute;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  content: " ";
+  pointer-events: none;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  border: 0 solid #eee;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-top-width: 1px;
+}
+
+.myContent .result>view {
+  margin-left: 20rpx;
+}
+
+.van-tabs__line{
+  background-color: #333!important;
+}

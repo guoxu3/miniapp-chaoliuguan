@@ -1,0 +1,146 @@
+/* pages/shoppingCar/shoppingCar.wxss */
+.shoppingCar{
+  border-top: 1rpx solid #eee;
+  padding-bottom: 50px;
+}
+
+.shop-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40rpx 0rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.shoppingCar .van-swipe-cell__right, .del {
+  width: 65px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff5757;
+  color: #fff;
+}
+
+.shop-card .check-box {
+  padding-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* .shop-card .check-box .van-checkbox__icon {
+  width: 50rpx;
+  height: 50rpx;
+} */
+
+.van-checkbox__icon--checked {
+  background-color: #333 !important;
+  border-color: #333 !important;
+}
+
+.shop-card .img-box {
+  width: 45%;
+  padding-left: 20rpx;
+}
+
+.shop-card .img-box image {
+  width: 100%;
+  border: 1rpx solid #eee;
+  height: 180rpx;
+  vertical-align: middle;
+}
+
+.shop-card .msg-box {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0rpx 20rpx;
+}
+
+.shop-card .msg-box .title, .shop-card .msg-box .price {
+  color: #333;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.shop-card .msg-box .type {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.shop-card .msg-box .total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.shop-card .msg-box .total .van-stepper view,
+.shop-card .msg-box .total .van-stepper input {
+  background-color: #fff;
+  border: 1rpx solid #ccc;
+  margin: 0rpx;
+  border-radius: 0rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.shop-card .msg-box .total .van-stepper input {
+  border-right: 0rpx;
+  border-left: 0rpx;
+}
+
+.bottom-box {
+  position: fixed;
+  bottom: 50px;
+  left: 0rpx;
+  right: 0rpx;
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: 1rpx solid #eee;
+  border-top: 1rpx solid #eee;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.bottom-box .check-box .van-checkbox__label {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.bottom-box .total-box {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.bottom-box .total-box .total {
+  line-height: 100rpx;
+  color: #333;
+}
+
+.bottom-box .total-box .result-btn {
+  height: 100%;
+  padding: 0rpx 50rpx;
+  display: flex;
+  background-color: #333;
+  color: #fff;
+  margin-left: 20rpx;
+  align-items: center;
+}
+
+.van-dialog__button {
+  width: 50%;
+}
+
+button:not([size='mini']){
+  width:100%!important;
+}

@@ -1,0 +1,17 @@
+<!--pages/classfly/classfly.wxml-->
+<view class="myContent">
+  <van-tabs active="{{ active }}" swipeable animated sticky>
+    <van-tab title="潮鞋">
+      <view class="brand_grid">
+        <van-grid square column-num="4" border="{{false}}">
+          <van-grid-item use-slot wx:for="{{ 8 }}">
+            <image style="width: 100%; height: 75px;" src="{{'/pages/home/images/brand/brand_' + (index+1) + '.jpg'}}" />
+          </van-grid-item>
+        </van-grid>
+      </view>
+    </van-tab>
+    <van-tab title="潮装">内容 2</van-tab>
+    <van-tab title="潮包">内容 3</van-tab>
+    <van-tab title="潮饰">内容 4</van-tab>
+  </van-tabs>
+</view>

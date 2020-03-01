@@ -1,0 +1,26 @@
+<!--pages/order/order.wxml-->
+<view class="myContent">
+  <van-tabs active="{{ active }}" swipeable animated sticky>
+    <van-tab title="全部">
+      <view>
+        <van-panel title="订单编号：12312312312" status="待付款" use-footer-slot>
+          <view class="content-box">
+            <van-card num="2" price="2.00" desc="描述信息" title="卡西欧手表男商务防水石英手表" thumb="https://img.yzcdn.cn/vant/apple-1.jpg" />
+          </view>
+          <view class="result">
+            <view>共 1 件</view>
+            <view>总计：￥1000.00</view>
+          </view>
+          <view slot="footer" class="footer">
+            <view class="btn">在线咨询</view>
+            <view class="btn payment">立即支付</view>
+          </view>
+        </van-panel>
+      </view>
+    </van-tab>
+    <van-tab title="代付款">内容 2</van-tab>
+    <van-tab title="待提货">内容 3</van-tab>
+    <van-tab title="待收货">内容 4</van-tab>
+    <van-tab title="已完成">内容 4</van-tab>
+  </van-tabs>
+</view>

@@ -1,0 +1,178 @@
+/* pages/home/home.wxss */
+
+page {
+  background-color: #eee;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+}
+
+.plate-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 420rpx;
+  margin-top: 20rpx;
+}
+
+.plate-box .plate-left, .plate-box .plate-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.plate-left {
+  width: 40%;
+}
+
+.plate-right {
+  width: 60%;
+}
+
+.plate-item {
+  width: 100%;
+}
+
+.plate-box .plate-left .plate-item {
+  height: 100%;
+}
+
+.plate-box .plate-right .plate-item {
+  height: 50%;
+}
+
+.plate-box .plate-item image {
+  width: 100%;
+  height: 100%;
+}
+
+.new-select, .daily-push {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+
+.new-select .title, .daily-push .title {
+  padding: 20rpx 0rpx;
+  font-weight: bolder;
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+}
+
+.new-select .commodity-card .commodity-name {
+  font-size: 26rpx;
+  padding: 10rpx 0rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.new-select .commodity-card .commodity-price {
+  font-size: 26rpx;
+  padding: 10rpx 0rpx;
+  font-weight: bolder;
+  color: #333;
+}
+
+.daily-push .commodity-card {
+  padding: 20rpx 0rpx;
+  position: relative;
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.daily-push .commodity-card::after {
+  position: absolute;
+  content: "";
+  height: 1rpx;
+  width: 85%;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  margin: auto;
+  background-color: #ddd;
+}
+
+.daily-push .commodity-card .van-card {
+  background-color: #fff !important;
+}
+
+.daily-push .commodity-card .van-card__thumb {
+  width: 45% !important;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+}
+
+.daily-push .commodity-card .van-card__content {
+  width: 55% !important;
+}
+
+.daily-push .commodity-card .van-card__title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  line-height: 28rpx !important;
+  margin-bottom: 20rpx;
+}
+
+.daily-push .commodity-card .van-card__desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 26rpx !important;
+}
+
+.daily-push .commodity-card .van-card__bottom {
+  position: absolute;
+  bottom: 0rpx;
+  font-size: 28rpx;
+}
+
+.daily-push .commodity-card .van-card__bottom .van-card__price {
+  color: #666;
+}
+
+.daily-push .alt {
+  padding: 0rpx 40rpx;
+  text-align: center;
+  color: #999;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.van-divider {
+  font-size: 24rpx!important;
+}
+
+.daily-push .alt .van-divider:after, .daily-push .alt .van-divider:before {
+  border-color: #969799;
+  opacity: .4;
+}
+
+.commodity-box .commodity-card:last-child::after {
+  background-color: transparent;
+}
+
+.commodity-card .van-grid-item__icon .van-icon--image{
+  width: 100%;
+  height: 100%;
+}
+
+.commodity-card .van-card__thumb{
+  height: var(--card-thumb-size,150rpx);
+}
+
+.commodity-card .van-grid-item__icon{
+  font-size: unset;
+  width: 100%;
+  height: 100%;
+}
+.commodity-card .van-grid-item__icon van-icon{
+  width: 100%;
+  height: 130rpx;
+  /* vertical-align: middle; */
+}
+.commodity-card .van-grid-item__content{
+  padding: var(--grid-item-content-padding,0px)!important;
+}

@@ -1,0 +1,116 @@
+<!--pages/detail/detail.wxml-->
+
+<view class="detail">
+  <view class="banner">
+    <swiper indicator-dots="{{true}}" circular="{{true}}" indicator-color="rgba(220, 220, 220, .3)" indicator-active-color="rgba(200, 200, 200, 1)">
+      <block wx:for="{{ commodity.bannerImg }}">
+        <swiper-item>
+          <image mode="aspectFit" height="375rpx" src="{{ item }}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="title">
+    <view class="title-text">
+      {{ commodity.name }}
+    </view>
+    <view class="title-price">
+      ￥{{ commodity.price }}
+    </view>
+    <view>
+      <van-cell-group>
+        <van-cell title="选择款式" value="请选择款式" bind:click="showPopup" border="{{true}}" is-link/>
+      </van-cell-group>
+      <van-grid border="{{false}}">
+        <van-grid-item icon="photo-o" text="文字" />
+        <van-grid-item icon="photo-o" text="文字" />
+        <van-grid-item icon="photo-o" text="文字" />
+        <van-grid-item icon="photo-o" text="文字" />
+      </van-grid>
+    </view>
+    <view>
+      <van-cell-group>
+        <van-cell title="配色" value="黑" border="{{false}}" />
+        <van-cell title="货号" value="CZ3986-001" border="{{false}}" />
+        <van-cell title="发售价格" value="￥1799 仅供参考" border="{{false}}" />
+        <van-cell title="发售日期" value="2019秋冬" border="{{false}}" />
+      </van-cell-group>
+    </view>
+    <view>
+      <text>相关商品</text>
+      <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view id="demo1" class="scroll-view-item_H demo-text-1">
+          <image mode="aspectFit" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="bottom-fixed">
+    <van-goods-action>
+      <view class="bottom-content">
+        <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" bind:click="handleContact" />
+        <van-goods-action-icon icon="cart-o" text="购物车" bind:click="onClickIcon" />
+        <van-goods-action-button text="加入购物车" custom-class="myBtn" type="warning" bind:click="showPopup" />
+        <van-goods-action-button text="立即购买" custom-class="myBtn" bind:click="showPopup" />
+      </view>
+    </van-goods-action>
+  </view>
+  <van-popup show="{{ show }}" position="bottom" closeable bind:close="onClose" catchtouchmove="null">
+    <view class="popup">
+      <view class="popup-top">
+        <view class="img-box">
+          <image mode="aspectFill" src="https://img.yzcdn.cn/vant/apple-1.jpg"></image>
+        </view>
+        <view class="text-box">
+          <view>￥{{ commodity.price }}</view>
+          <view>库存19986件</view>
+          <view>已选：“16g玫瑰金5.5存”</view>
+        </view>
+      </view>
+      <view class="popup-bottom">
+        <view>
+          <view class="alt">颜色</view>
+          <view class="type">
+            <view class="type-box">
+              <view wx:for="{{ commodity.type.color }}" class="{{ currentColor === item ? 'active' : '' }}" bindtap="selected" data-index="{{ item }}">{{ item }}</view>
+            </view>
+          </view>
+        </view>
+        <view>
+          <view class="alt">尺码</view>
+          <view class="type">
+            <view class="type-box">
+              <view wx:for="{{ commodity.type.size }}" class="type-box-item">{{ item }}</view>
+            </view>
+          </view>
+        </view>
+        <van-button type="primary" size="large" block>确定选择</van-button>
+      </view>
+
+    </view>
+  </van-popup>
+</view>

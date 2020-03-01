@@ -1,0 +1,38 @@
+/* pages/classfly/classfly.wxss */
+.myContent .content-row {
+  width: 100%;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #eee;
+  column-count:2;
+}
+
+.myContent .content-row .content-col {
+  /* width: 50%; */
+  padding-top: 20rpx;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.myContent .content-row::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.myContent .content-row .content-col .card {
+  background-color: #fff;
+  text-align: center;
+}
+
+.myContent .content-row .content-col .text-box{
+  padding: 20rpx 0rpx;
+}
+
+.myContent .content-row .content-col image {
+  width: 100%;
+}
+
+.brand_grid{
+  width: 100%;
+}

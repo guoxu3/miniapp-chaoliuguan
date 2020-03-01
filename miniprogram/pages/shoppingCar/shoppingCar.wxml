@@ -1,0 +1,48 @@
+<!--pages/shoppingCar/shoppingCar.wxml-->
+<view class="shoppingCar">
+  <view class="myContent">
+    <van-checkbox-group value="{{ result }}" bind:change="check_onChange">
+      <block wx:for="{{commodity}}">
+        <view class="card">
+          <van-swipe-cell id="swipe-cell" name="{{item.id}}" right-width="{{ 65 }}" left-width="{{ 1 }}" async-close bind:close="onClose">
+            <van-cell-group>
+              <view class="shop-card">
+                <view class="check-box">
+                  <van-checkbox name="{{item.id}}"></van-checkbox>
+                </view>
+                <view class="img-box">
+                  <image></image>
+                </view>
+                <view class="msg-box">
+                  <view class="message">
+                    <view class="title">{{item.name}}</view>
+                    <view class="type">{{item.type}}</view>
+                  </view>
+                  <view class="total">
+                    <view class="price">￥{{item.price}}</view>
+                    <view class="number">
+                      <van-stepper id="{{item.id}}" value="{{ item.num }}" bind:change="onChange" />
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </van-cell-group>
+            <view class="del" slot="right">删除</view>
+          </van-swipe-cell>
+        </view>
+      </block>
+
+    </van-checkbox-group>
+  </view>
+  <view class="bottom-box">
+    <view class="check-box">
+      <van-checkbox value="{{ checked }}" bind:change="all_onChange">全选</van-checkbox>
+    </view>
+    <view class="total-box">
+      <view class="total">总计：￥{{total}}</view>
+      <view class="result-btn" bindtap="test">立即结算</view>
+    </view>
+  </view>
+  <van-dialog id="van-dialog" />
+  <van-toast id="van-toast" />
+</view>
