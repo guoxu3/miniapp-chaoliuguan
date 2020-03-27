@@ -1,8 +1,11 @@
-const IMAGE_EXT = ['jpeg', 'jpg', 'gif', 'png', 'svg'];
-export function isImageUrl(url) {
-    return IMAGE_EXT.some(ext => url.indexOf(`.${ext}`) !== -1);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var IMAGE_EXT = ['jpeg', 'jpg', 'gif', 'png', 'svg'];
+function isImageUrl(url) {
+    return IMAGE_EXT.some(function (ext) { return url.indexOf("." + ext) !== -1; });
 }
-export function isImageFile(item) {
+exports.isImageUrl = isImageUrl;
+function isImageFile(item) {
     if (item.type) {
         return item.type.indexOf('image') === 0;
     }
@@ -14,3 +17,8 @@ export function isImageFile(item) {
     }
     return false;
 }
+exports.isImageFile = isImageFile;
+function isVideo(res, accept) {
+    return accept === 'video';
+}
+exports.isVideo = isVideo;

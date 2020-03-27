@@ -14,6 +14,22 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const request = url => {
+  return new Promise(success => {
+    wx.showLoading({
+      title: "加载中"
+    })
+    wx.request({
+      url: 'https://www.studyinghome.com/mock/5e60f0ef597ac8103c47608b/chaoliuguan' + url,
+      success,
+      complate() {
+        wx.hideLoading();
+      }
+    })
+  })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  request
 }

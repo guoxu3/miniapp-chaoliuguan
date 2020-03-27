@@ -17,7 +17,8 @@ App({
 
     this.globalData = {
       userInfo: {},
-      logged: false
+      logged: false,
+      updated: false
     }
   }
 })

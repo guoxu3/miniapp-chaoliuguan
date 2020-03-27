@@ -1,6 +1,6 @@
 <!--pages/order/order.wxml-->
 <view class="myContent">
-  <van-tabs active="{{ active }}" swipeable animated sticky>
+  <van-tabs swipeable animated sticky>
     <van-tab title="全部">
       <view>
         <van-panel title="订单编号：12312312312" status="待付款" use-footer-slot>

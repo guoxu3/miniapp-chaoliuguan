@@ -11,7 +11,8 @@ Page({
   data: {
     userAvatar: '',
     nickName: '未登录',
-    disabled: true
+    disabled: true,
+    logged: app.logged
   },
 
   /**
@@ -38,10 +39,12 @@ Page({
         if (res.data.length) {
           app.userInfo = Object.assign(app.userInfo, res.data[0]);
           app.logged = true;
+          app.updated = true;
           this.setData({
             userAvatar: app.userInfo.userAvatar,
             nickName: app.userInfo.nickName,
-            disabled: false
+            disabled: false,
+            logged: app.logged
           })
           wx.hideLoading();
           wx.showToast({
@@ -120,10 +123,12 @@ Page({
         if(res.data.length){
           app.userInfo = Object.assign(app.userInfo, res.data[0]);
           app.logged = true;
+          app.updated = true;
           this.setData({
             userAvatar: app.userInfo.userAvatar,
             nickName: app.userInfo.nickName,
-            disabled: false
+            disabled: false,
+            logged: app.logged
           })
           wx.hideLoading();
           wx.showToast({
@@ -143,10 +148,12 @@ Page({
               user.doc(res._id).get().then(res => {
                 app.userInfo = Object.assign(app.userInfo, res.data);
                 app.logged = true;
+                app.updated = true;
                 this.setData({
                   userAvatar: app.userInfo.userAvatar,
                   nickName: app.userInfo.nickName,
-                  disabled: false
+                  disabled: false,
+                  logged: app.logged
                 })
                 wx.hideLoading();
                 wx.showToast({

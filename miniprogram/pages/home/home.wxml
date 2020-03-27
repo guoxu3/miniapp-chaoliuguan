@@ -1,77 +1,100 @@
 <!--pages/home/home.wxml-->
-<view class="search">
-  <van-search placeholder="请输入搜索关键词" />
-</view>
-<view class="banner">
-  <swiper indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+<view class="home-page">
+  <van-sticky>
+    <van-search placeholder="请输入搜索关键词" />
+  </van-sticky>
+
+  <swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
     <block wx:for="{{5}}">
       <swiper-item>
         <image mode="aspectFill" src="{{banner}}"></image>
       </swiper-item>
     </block>
   </swiper>
-</view>
-<view class="classfly">
+
   <van-grid border="{{flase}}">
     <van-grid-item icon="/pages/home/images/icon_1.png" text="潮装" />
     <van-grid-item icon="/pages/home/images/icon_2.png" text="潮鞋" />
     <van-grid-item icon="/pages/home/images/icon_3.png" text="潮包" />
     <van-grid-item icon="/pages/home/images/icon_4.png" text="潮饰" />
   </van-grid>
-</view>
 
-<view class="new-select">
-  <view class="title">
-    <text>/ 精 选 品 牌 /</text>
-  </view>
-  <view class="commodity-card">
-    <!-- <van-grid column-num="4" border="{{ false }}" gutter="{{ 10 }}">
-      <van-grid-item use-slot wx:for="{{ 8 }}">
-        <image style="width: 100%; height: 65px;" src="https://img.yzcdn.cn/vant/apple-1.jpg" />
+  <view class="section">
+    <view class="title">/ 精 选 品 牌 /</view>
+    <van-grid class="brand" border="{{ false }}">
+      <van-grid-item use-slot wx:for="{{ 7 }}">
+        <image style="width:120rpx;height:120rpx" src="{{'/pages/home/images/brand/brand_' + (index+1) + '.jpg'}}" />
       </van-grid-item>
-    </van-grid> -->
-    <van-grid border="{{ false }}">
-      <van-grid-item icon="{{'/pages/home/images/brand/brand_' + (index+1) + '.jpg'}}" wx:for="{{ 7 }}" />
-      <van-grid-item icon="{{'/pages/home/images/brand/brand_8.jpg'}}" link-type="switchTab" url="/pages/classfly/classfly" />
+      <van-grid-item use-slot link-type="switchTab" url="/pages/classfly/classfly">
+        <image style="width:120rpx;height:120rpx" src="{{'/pages/home/images/brand/brand_8.jpg'}}" />
+      </van-grid-item>
     </van-grid>
   </view>
-</view>
 
-<view class="plate-box">
-  <view class="plate-left">
-    <view class="plate-item">
-      <image src="/pages/home/images/plate_new.png"></image>
-    </view>
-  </view>
-  <view class="plate-right">
-    <view class="plate-item">
-      <image src="/pages/home/images/plate_Classic.png"></image>
-    </view>
-    <view class="plate-item">
-      <image src="/pages/home/images/plate_overseas.png"></image>
-    </view>
-  </view>
-</view>
-
-<view class="daily-push">
-  <view class="title">
-    <text>/ 每 日 推 荐 /</text>
-  </view>
-  <view class="commodity-box" >
-    <block wx:for="{{3}}">
-      <view class="commodity-card" catchtap="detail">
-        <van-card price="2.00" title="商品标题" thumb="{{'cloud://wecloud-demo-01.7765-wecloud-demo-01-1300845480/commodity/commodity (' + (index + 1) + ').JPG'}}" />
+  <view class="plate-box">
+    <view class="plate-left">
+      <view class="plate-item">
+        <!-- <image src="/pages/home/images/plate_new.png"></image> -->
       </view>
-    </block>
+    </view>
+    <view class="plate-right">
+      <view class="plate-item">
+        <!-- <image src="/pages/home/images/plate_Classic.png"></image> -->
+      </view>
+      <view class="plate-item">
+        <!-- <image src="/pages/home/images/plate_overseas.png"></image> -->
+      </view>
+    </view>
   </view>
+
+  <view class="section">
+    <view class="title">/ 最 新 精 选 /</view>
+    <scroll-view scroll-x class="scroll-x">
+      <view class="scroll-item">
+        <image src="cloud://wecloud-demo-01.7765-wecloud-demo-01-1300845480/commodity/commodity (1).JPG"></image>
+      </view>
+      <view class="scroll-item">
+        <image src="cloud://wecloud-demo-01.7765-wecloud-demo-01-1300845480/commodity/commodity (1).JPG"></image>
+      </view>
+      <view class="scroll-item">
+        <image src="cloud://wecloud-demo-01.7765-wecloud-demo-01-1300845480/commodity/commodity (1).JPG"></image>
+      </view>
+      <view class="scroll-item">
+        <image src="cloud://wecloud-demo-01.7765-wecloud-demo-01-1300845480/commodity/commodity (1).JPG"></image>
+      </view>
+      <view class="more">查看更多</view>
+    </scroll-view>
+  </view>
+
+  <view class="section">
+    <view class="title">/ 每 日 推 荐 /</view>
+    <view class="commodity-box">
+      <block wx:for="{{3}}">
+        <view class="commodity-card" catchtap="detail">
+          <view class="commodity-img">
+            <image src="https://hbimg.huabanimg.com/4fb2e1e5cf9378f4d52342ec92c7b24a2d9b81574b914-0ak97R_fw658"></image>
+          </view>
+          <view class="commodity-text">
+            <view class="commodity-name">
+              Vans Old Skool Black 黑白休闲板鞋
+            </view>
+            <view class="commodity-bottom">
+              <view class="commodity-price">
+                <view>
+                  <text class="commodity-alt">￥</text>
+                  <text class="now-price">439</text>
+                </view>
+                <view class="old-price">￥739</view>
+              </view>
+              <view class="people-num">191077人付款</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  
   <view class="alt">
     <van-divider contentPosition="center">到底儿啦！</van-divider>
   </view>
 </view>
-
-<!-- <van-tabbar active="{{ active }}" bind:change="onChange">
-  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-  <van-tabbar-item icon="search">标签</van-tabbar-item>
-  <van-tabbar-item icon="friends-o" info="5">标签</van-tabbar-item>
-  <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-</van-tabbar> -->

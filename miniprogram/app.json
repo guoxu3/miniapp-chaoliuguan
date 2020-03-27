@@ -7,13 +7,21 @@
     "pages/detail/detail",
     "pages/order/order",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/address/address",
+    "pages/editAddress/editAddress"
   ],
+  "permission": {
+    "scope.uesrLocation": {
+      "desc": "你好"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eee"
   },
   "tabBar": {
     "custom": true,
@@ -36,7 +44,6 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-grid": "miniprogram_npm/@vant/weapp/grid/index",
@@ -64,6 +71,12 @@
     "van-cell": "miniprogram_npm/@vant/weapp/cell/index",
     "van-cell-group": "miniprogram_npm/@vant/weapp/cell-group/index",
     "van-action-sheet": "miniprogram_npm/@vant/weapp/action-sheet/index",
-    "van-toast": "miniprogram_npm/@vant/weapp/toast/index"
+    "van-toast": "miniprogram_npm/@vant/weapp/toast/index",
+    "van-sticky": "miniprogram_npm/@vant/weapp/sticky/index",
+    "van-radio": "miniprogram_npm/@vant/weapp/radio/index",
+    "van-radio-group": "miniprogram_npm/@vant/weapp/radio-group/index",
+    "van-field": "miniprogram_npm/@vant/weapp/field/index",
+    "van-picker": "miniprogram_npm/@vant/weapp/picker/index",
+    "van-area": "miniprogram_npm/@vant/weapp/area/index"
   }
 }

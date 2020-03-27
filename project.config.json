@@ -2,13 +2,14 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -19,12 +20,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"appid": "wx46afb239c8400ca8",
 	"projectname": "chaoliuguan",
-	"libVersion": "2.10.1",
+	"libVersion": "2.10.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -43,9 +43,62 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/detail/detail",
+					"pathName": "pages/detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about/about",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/address/address",
+					"pathName": "pages/address/address",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/editAddress/editAddress",
+					"pathName": "pages/editAddress/editAddress",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/about/about",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/home",
+					"pathName": "pages/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/classfly/classfly",
+					"pathName": "pages/classfly/classfly",
+					"scene": null
+				}
+			]
 		}
 	}
 }

@@ -1,6 +1,7 @@
-import { VantComponent } from '../common/component';
-import { addUnit } from '../common/utils';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     classes: [
         'main-item-class',
         'content-item-class',
@@ -22,8 +23,7 @@ VantComponent({
         },
         height: {
             type: [Number, String],
-            value: 300,
-            observer: 'updateHeight'
+            value: 300
         },
         max: {
             type: Number,
@@ -33,18 +33,15 @@ VantComponent({
     data: {
         subItems: []
     },
-    created() {
-        this.updateHeight();
-    },
     methods: {
         // 当一个子项被选择时
-        onSelectItem(event) {
-            const { item } = event.currentTarget.dataset;
-            const isArray = Array.isArray(this.data.activeId);
+        onSelectItem: function (event) {
+            var item = event.currentTarget.dataset.item;
+            var isArray = Array.isArray(this.data.activeId);
             // 判断有没有超出右侧选择的最大数
-            const isOverMax = isArray && this.data.activeId.length >= this.data.max;
+            var isOverMax = isArray && this.data.activeId.length >= this.data.max;
             // 判断该项有没有被选中, 如果有被选中，则忽视是否超出的条件
-            const isSelected = isArray
+            var isSelected = isArray
                 ? this.data.activeId.indexOf(item.id) > -1
                 : this.data.activeId === item.id;
             if (!item.disabled && (!isOverMax || isSelected)) {
@@ -52,23 +49,18 @@ VantComponent({
             }
         },
         // 当一个导航被点击时
-        onClickNav(event) {
-            const index = event.detail;
-            const item = this.data.items[index];
+        onClickNav: function (event) {
+            var index = event.detail;
+            var item = this.data.items[index];
             if (!item.disabled) {
-                this.$emit('click-nav', { index });
+                this.$emit('click-nav', { index: index });
             }
         },
         // 更新子项列表
-        updateSubItems() {
-            const { items, mainActiveIndex } = this.data;
-            const { children = [] } = items[mainActiveIndex] || {};
+        updateSubItems: function () {
+            var _a = this.data, items = _a.items, mainActiveIndex = _a.mainActiveIndex;
+            var _b = (items[mainActiveIndex] || {}).children, children = _b === void 0 ? [] : _b;
             return this.set({ subItems: children });
-        },
-        updateHeight() {
-            this.setData({
-                innerHeight: addUnit(this.data.height)
-            });
         }
     }
 });

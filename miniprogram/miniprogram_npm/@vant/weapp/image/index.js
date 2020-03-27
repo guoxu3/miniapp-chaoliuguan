@@ -1,20 +1,47 @@
-import { addUnit, isDef } from '../common/utils';
-import { VantComponent } from '../common/component';
-import { button } from '../mixins/button';
-import { openType } from '../mixins/open-type';
-VantComponent({
-    mixins: [button, openType],
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = require("../common/utils");
+var component_1 = require("../common/component");
+var button_1 = require("../mixins/button");
+var open_type_1 = require("../mixins/open-type");
+var FIT_MODE_MAP = {
+    none: 'center',
+    fill: 'scaleToFill',
+    cover: 'aspectFill',
+    contain: 'aspectFit'
+};
+component_1.VantComponent({
+    mixins: [button_1.button, open_type_1.openType],
     classes: ['custom-class', 'loading-class', 'error-class', 'image-class'],
     props: {
-        src: String,
-        width: String,
-        height: String,
-        fit: {
+        src: {
             type: String,
-            value: 'fill'
+            observer: function () {
+                this.setData({
+                    error: false,
+                    loading: true
+                });
+            }
         },
         round: Boolean,
+        width: {
+            type: null,
+            observer: 'setStyle'
+        },
+        height: {
+            type: null,
+            observer: 'setStyle'
+        },
+        radius: null,
         lazyLoad: Boolean,
+        useErrorSlot: Boolean,
+        useLoadingSlot: Boolean,
+        showMenuByLongpress: Boolean,
+        fit: {
+            type: String,
+            value: 'fill',
+            observer: 'setMode'
+        },
         showError: {
             type: Boolean,
             value: true
@@ -22,70 +49,53 @@ VantComponent({
         showLoading: {
             type: Boolean,
             value: true
-        },
-        showMenuByLongpress: Boolean,
-        // 受小程序slot限制所需要的属性
-        useLoadingSlot: Boolean,
-        useErrorSlot: Boolean,
-    },
-    data: {
-        fitWeapp: 'aspectFit',
-        FIT_MODE_MAP: {
-            contain: 'aspectFit',
-            cover: 'aspectFill',
-            fill: 'scaleToFill',
-            none: 'center',
-            // TODO: 这个没有原生的属性，需要后面实现，暂时先用contain;
-            'scale-down': 'aspectFit'
-        },
-        loading: true,
-        error: false
-    },
-    watch: {
-        src() {
-            this.setData({
-                loading: true,
-                error: false
-            });
         }
     },
-    mounted() {
-        this.init();
+    data: {
+        error: false,
+        loading: true,
+        viewStyle: '',
+    },
+    mounted: function () {
+        this.setMode();
+        this.setStyle();
     },
     methods: {
-        init() {
-            const { FIT_MODE_MAP, fit } = this.data;
+        setMode: function () {
             this.setData({
-                mode: FIT_MODE_MAP[fit],
-                style: this.getStyle(),
+                mode: FIT_MODE_MAP[this.data.fit],
             });
         },
-        getStyle() {
-            const { width, height } = this.data;
-            let style = '';
-            if (isDef(width)) {
-                style += `width: ${addUnit(width)};`;
+        setStyle: function () {
+            var _a = this.data, width = _a.width, height = _a.height, radius = _a.radius;
+            var style = '';
+            if (utils_1.isDef(width)) {
+                style += "width: " + utils_1.addUnit(width) + ";";
             }
-            if (isDef(height)) {
-                style += `height: ${addUnit(height)};`;
+            if (utils_1.isDef(height)) {
+                style += "height: " + utils_1.addUnit(height) + ";";
             }
-            return style;
+            if (utils_1.isDef(radius)) {
+                style += 'overflow: hidden;';
+                style += "border-radius: " + utils_1.addUnit(radius) + ";";
+            }
+            this.setData({ viewStyle: style });
         },
-        onLoad(event) {
+        onLoad: function (event) {
             this.setData({
                 loading: false
             });
             this.$emit('load', event.detail);
         },
-        onError(event) {
+        onError: function (event) {
             this.setData({
                 loading: false,
-                error: true,
+                error: true
             });
             this.$emit('error', event.detail);
         },
-        onClick(event) {
+        onClick: function (event) {
             this.$emit('click', event.detail);
-        },
+        }
     }
 });

@@ -11,7 +11,7 @@
                   <van-checkbox name="{{item.id}}"></van-checkbox>
                 </view>
                 <view class="img-box">
-                  <image></image>
+                  <image src="{{item.imgUrl}}"></image>
                 </view>
                 <view class="msg-box">
                   <view class="message">
@@ -21,7 +21,7 @@
                   <view class="total">
                     <view class="price">￥{{item.price}}</view>
                     <view class="number">
-                      <van-stepper id="{{item.id}}" value="{{ item.num }}" bind:change="onChange" />
+                      <van-stepper id="{{item.id}}" async-change value="{{ item.num }}" bind:change="onChange" />
                     </view>
                   </view>
                 </view>
@@ -31,7 +31,6 @@
           </van-swipe-cell>
         </view>
       </block>
-
     </van-checkbox-group>
   </view>
   <view class="bottom-box">

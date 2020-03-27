@@ -1,25 +1,36 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     field: true,
     relation: {
         name: 'dropdown-menu',
         type: 'ancestor',
-        linked(target) {
-            this.parent = target;
-        },
-        unlinked() {
-            this.parent = null;
+        current: 'dropdown-item',
+        linked: function () {
+            this.updateDataFromParent();
         }
     },
     props: {
-        value: null,
-        title: String,
+        value: {
+            type: null,
+            observer: 'rerender'
+        },
+        title: {
+            type: String,
+            observer: 'rerender'
+        },
         disabled: Boolean,
-        titleClass: String,
+        titleClass: {
+            type: String,
+            observer: 'rerender'
+        },
         options: {
             type: Array,
-            value: []
-        }
+            value: [],
+            observer: 'rerender'
+        },
+        popupStyle: String
     },
     data: {
         transition: true,
@@ -27,44 +38,72 @@ VantComponent({
         showWrapper: false,
         displayTitle: ''
     },
-    created() {
-        this.setData({ displayTitle: this.computedDisplayTitle(this.data.value) });
-    },
     methods: {
-        computedDisplayTitle(curValue) {
-            const { title, options } = this.data;
-            if (title) {
-                return title;
-            }
-            const match = options.filter(option => option.value === curValue);
-            const displayTitle = match.length ? match[0].text : '';
-            return displayTitle;
+        rerender: function () {
+            var _this = this;
+            wx.nextTick(function () {
+                _this.parent && _this.parent.updateItemListData();
+            });
         },
-        onClickOverlay() {
-            this.toggle();
+        updateDataFromParent: function () {
+            if (this.parent) {
+                var _a = this.parent.data, overlay = _a.overlay, duration = _a.duration, activeColor = _a.activeColor, closeOnClickOverlay = _a.closeOnClickOverlay, direction = _a.direction;
+                this.setData({
+                    overlay: overlay,
+                    duration: duration,
+                    activeColor: activeColor,
+                    closeOnClickOverlay: closeOnClickOverlay,
+                    direction: direction
+                });
+            }
+        },
+        onOpen: function () {
+            this.$emit('open');
+        },
+        onOpened: function () {
+            this.$emit('opened');
+        },
+        onClose: function () {
             this.$emit('close');
         },
-        onOptionTap(event) {
-            let { value, displayTitle } = this.data;
-            const { option } = event.currentTarget.dataset;
-            const { value: optionValue } = option;
-            if (optionValue !== value) {
-                value = optionValue;
-                displayTitle = this.computedDisplayTitle(optionValue);
-                this.$emit('change', optionValue);
-            }
-            this.setData({ showPopup: false, value, displayTitle });
-            const time = this.data.duration || 0;
-            setTimeout(() => {
-                this.setData({ showWrapper: false });
-            }, time);
-            // parent 中的 itemListData 是 children 上的数据的集合
-            // 数据的更新由 children 各自维护，但是模板的更新需要额外触发 parent 的 setData
-            this.parent.setData({ itemListData: this.parent.data.itemListData });
+        onClosed: function () {
+            this.$emit('closed');
+            this.setData({ showWrapper: false });
         },
-        toggle() {
-            const { childIndex } = this.data;
-            this.parent.toggleItem(childIndex);
+        onOptionTap: function (event) {
+            var option = event.currentTarget.dataset.option;
+            var value = option.value;
+            var shouldEmitChange = this.data.value !== value;
+            this.setData({ showPopup: false, value: value });
+            this.$emit('close');
+            this.rerender();
+            if (shouldEmitChange) {
+                this.$emit('change', value);
+            }
+        },
+        toggle: function (show, options) {
+            var _this = this;
+            if (options === void 0) { options = {}; }
+            var showPopup = this.data.showPopup;
+            if (typeof show !== 'boolean') {
+                show = !showPopup;
+            }
+            if (show === showPopup) {
+                return;
+            }
+            this.setData({
+                transition: !options.immediate,
+                showPopup: show,
+            });
+            if (show) {
+                this.parent.getChildWrapperStyle().then(function (wrapperStyle) {
+                    _this.setData({ wrapperStyle: wrapperStyle, showWrapper: true });
+                    _this.rerender();
+                });
+            }
+            else {
+                this.rerender();
+            }
         }
     }
 });

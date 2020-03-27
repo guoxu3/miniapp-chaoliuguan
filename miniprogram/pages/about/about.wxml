@@ -1,7 +1,7 @@
 <!--pages/about/about.wxml-->
 <view class="about">
-  <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登陆</button>
-  <view class="top">
+  <button wx:if="{{ !logged }}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登陆</button>
+  <view class="top" wx:else>
     <view class="card">
       <view class="card-top">
         <view class="msg">
@@ -26,7 +26,7 @@
 </view>
 <view class="bottom">
   <van-grid column-num="3" square>
-    <van-grid-item use-slot link-type="navigateTo" url="/pages/order/order">
+    <van-grid-item use-slot url="../order/order">
       <view class="item-img">
         <image mode="widthFix" src="./images/icon_1.jpg" />
       </view>
@@ -50,7 +50,7 @@
         <text>优惠券</text>
       </view>
     </van-grid-item>
-    <van-grid-item use-slot>
+    <van-grid-item use-slot url="../address/address">
       <view class="item-img">
         <image mode="widthFix" src="./images/icon_4.jpg" />
       </view>

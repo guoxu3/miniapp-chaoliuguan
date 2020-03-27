@@ -1,0 +1,30 @@
+/* miniprogram/pages/editAddress/editAddress.wxss */
+
+page {
+  background-color: #eee;
+}
+
+textarea {
+  font-size: 28rpx;
+  padding: 20rpx 32rpx;
+  background-color: #fff;
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+}
+
+.saveAddress{
+  position: fixed!important;
+  bottom: 20rpx;
+  left: 20rpx;
+  right: 20rpx;
+  width: auto!important
+}
+
+.getLocation{
+  background-color: #fff;
+  padding: 20rpx;
+  text-align: right;
+  color: #94d1ff;
+  font-size: 26rpx;
+}

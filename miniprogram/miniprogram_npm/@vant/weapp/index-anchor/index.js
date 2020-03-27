@@ -1,14 +1,11 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     relation: {
         name: 'index-bar',
         type: 'ancestor',
-        linked(target) {
-            this.parent = target;
-        },
-        unlinked() {
-            this.parent = null;
-        }
+        current: 'index-anchor',
     },
     props: {
         useSlot: Boolean,

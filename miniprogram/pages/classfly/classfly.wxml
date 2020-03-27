@@ -1,6 +1,6 @@
 <!--pages/classfly/classfly.wxml-->
 <view class="myContent">
-  <van-tabs active="{{ active }}" swipeable animated sticky>
+  <van-tabs swipeable animated sticky>
     <van-tab title="潮鞋">
       <view class="brand_grid">
         <van-grid square column-num="4" border="{{false}}">

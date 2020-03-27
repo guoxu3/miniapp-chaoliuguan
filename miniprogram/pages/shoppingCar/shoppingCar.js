@@ -8,6 +8,7 @@ const userInfo = app.userInfo;
 const db = wx.cloud.database();
 const chaoliuguan = db.collection('chaoliuguan');
 const _ = db.command;
+console.log(_)
 
 Page({
 
@@ -32,7 +33,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.showLoading({
+      title: '请稍等',
+    })
+    if (app.logged) {
+      chaoliuguan.doc(userInfo._id).field({
+        shopCart: true
+      }).get().then(res => {
+        console.log(res)
+        userInfo.shopCart = res.data.shopCart;
+        this.data.commodity = userInfo.shopCart
+        this.setData({
+          commodity: this.data.commodity
+        })
+        wx.showToast({
+          title: '加载完成',
+        })
+      })
+    } else {
+      wx.showToast({
+        title: '请先登陆',
+      })
+    }
   },
 
   /**
@@ -40,16 +62,13 @@ Page({
    */
   onShow: function () {
     this.getTabBar().init();
-    chaoliuguan.doc(userInfo._id).field({
-      shopCart: true
-    }).get().then(res => {
-      console.log(res)
-      userInfo.shopCart = res.data.shopCart;
-      this.data.commodity = userInfo.shopCart
+    if (app.updated) {
+      this.data.commodity = userInfo.shopCart;
       this.setData({
         commodity: this.data.commodity
-      })
-    })
+      });
+      app.updated = false;
+    }
   },
 
   /**
@@ -144,9 +163,32 @@ Page({
 
   // 当数量值改变时调用的函数
   onChange(event) {
-    var currentTarget = this.data.commodity.find(item => event.currentTarget.id == item.id);
-    currentTarget.num = event.detail;
-    this.total();//计算价格总数
+    console.log(event)
+    wx.showLoading()
+    const id = Number(event.currentTarget.id);
+    console.log(id)
+    const index = this.data.commodity.findIndex(item => item.id == id);
+    const indexName = `shopCart.${index}.num`;
+
+    chaoliuguan.doc(userInfo._id).update({
+      data:{
+        [indexName]: event.detail
+      },
+      success:res => {
+        console.log(res)
+        var currentTarget = this.data.commodity.find(item => event.currentTarget.id == item.id);
+        currentTarget.num = event.detail;
+        const index = this.data.commodity.findIndex(item => item.id == event.currentTarget.id);
+        console.log(this.data.commodity)
+        var num = `commodity[${index}].num`;
+
+        this.setData({
+          [num] : event.detail
+        })
+        this.total();//计算价格总数
+        wx.hideLoading()
+      }
+    })
   },
 
   // 全选函数
@@ -155,13 +197,14 @@ Page({
     if (event.detail) { // 判断全选按钮是否勾上 如果勾上了就
       let commodity = this.data.commodity; //定义一个变量装当前购物车中的商品
       for (let index in commodity) { // 循环为result数组加入名字，让他们有名字的都被选中
-        result.push(commodity[index].id);
+        result.push(commodity[index].id + '');
       }
     }
     this.setData({ // 最后渲染到界面上
       checked: event.detail,  // 全选按钮状态
       result: result, // 商品按钮状态
     });
+    console.log(this.data.result)
     this.total(); // 渲染后计算总价格
   },
 

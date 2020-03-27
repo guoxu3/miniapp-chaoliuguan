@@ -1,0 +1,10 @@
+<!--miniprogram/pages/editAddress/editAddress.wxml-->
+<van-field value="{{ username }}" title-width="70px" label="收货人" placeholder="填写姓名" bind:click-icon="onClickIcon" />
+<van-field value="{{ password }}" title-width="70px" label="联系电话" type="number" placeholder="填写手机号" />
+<van-cell title="所在区域" is-link value="{{region[0].name}} {{region[1].name}} {{region[2].name}}" bind:click="onoff" />
+<textarea placeholder="请填写详细地址" value="{{addressDetail}}"></textarea>
+<view class="getLocation" bindtap="test">自动检测</view>
+<van-button custom-class="saveAddress" color="#94d1ff" bind:click="saveAddress">保存地址</van-button>
+<van-popup show="{{ onoff }}" position="bottom" bind:close="onClose">
+  <van-area visible-item-count="{{ 3 }}" area-list="{{ areaList }}" columns-num="{{ 3 }}" bind:confirm="onConfirm" bind:cancel="onCancel" />
+</van-popup>

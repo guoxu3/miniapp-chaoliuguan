@@ -1,20 +1,16 @@
-import { VantComponent } from '../common/component';
-import { addUnit } from '../common/utils';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
 function emit(target, value) {
     target.$emit('input', value);
     target.$emit('change', value);
 }
-VantComponent({
+component_1.VantComponent({
     field: true,
     relation: {
         name: 'checkbox-group',
         type: 'ancestor',
-        linked(target) {
-            this.parent = target;
-        },
-        unlinked() {
-            this.parent = null;
-        }
+        current: 'checkbox',
     },
     classes: ['icon-class', 'label-class'],
     props: {
@@ -30,14 +26,14 @@ VantComponent({
         },
         iconSize: {
             type: null,
-            observer: 'setSizeWithUnit'
+            value: 20
         }
     },
     data: {
-        sizeWithUnit: '20px'
+        parentDisabled: false
     },
     methods: {
-        emitChange(value) {
+        emitChange: function (value) {
             if (this.parent) {
                 this.setParentValue(this.parent, value);
             }
@@ -45,22 +41,22 @@ VantComponent({
                 emit(this, value);
             }
         },
-        toggle() {
-            const { disabled, value } = this.data;
-            if (!disabled) {
+        toggle: function () {
+            var _a = this.data, parentDisabled = _a.parentDisabled, disabled = _a.disabled, value = _a.value;
+            if (!disabled && !parentDisabled) {
                 this.emitChange(!value);
             }
         },
-        onClickLabel() {
-            const { labelDisabled, disabled, value } = this.data;
-            if (!disabled && !labelDisabled) {
+        onClickLabel: function () {
+            var _a = this.data, labelDisabled = _a.labelDisabled, parentDisabled = _a.parentDisabled, disabled = _a.disabled, value = _a.value;
+            if (!disabled && !labelDisabled && !parentDisabled) {
                 this.emitChange(!value);
             }
         },
-        setParentValue(parent, value) {
-            const parentValue = parent.data.value.slice();
-            const { name } = this.data;
-            const { max } = parent.data;
+        setParentValue: function (parent, value) {
+            var parentValue = parent.data.value.slice();
+            var name = this.data.name;
+            var max = parent.data.max;
             if (value) {
                 if (max && parentValue.length >= max) {
                     return;
@@ -71,17 +67,12 @@ VantComponent({
                 }
             }
             else {
-                const index = parentValue.indexOf(name);
+                var index = parentValue.indexOf(name);
                 if (index !== -1) {
                     parentValue.splice(index, 1);
                     emit(parent, parentValue);
                 }
             }
-        },
-        setSizeWithUnit(size) {
-            this.set({
-                sizeWithUnit: addUnit(size)
-            });
-        },
+        }
     }
 });

@@ -1,81 +1,82 @@
 /* pages/detail/detail.wxss */
 
-.detail {
+.detail-page {
   padding-bottom: 100rpx;
 }
 
-.detail swiper {
+.detail-page swiper {
   height: 750rpx;
 }
 
-.detail swiper swiper-item image {
+.detail-page swiper swiper-item image {
   height: 100%;
   width: 100%;
-  background-color: #000;
-}
-
-.bottom-fixed .bottom-content { 
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-right: 20rpx;
-}
-
-.bottom-fixed button:not([size='mini']) {
-  flex: 1;
-  width: auto;
+  background-color: #fff;
 }
 
 .title {
   text-align: center;
-  padding: 20rpx 0rpx;
-}
-
-.title-price {
   margin: 20rpx 0rpx;
 }
 
-.van-cell__value {
-  color: #333 !important;
+.title-text{
+  font-weight: lighter;
+  color: #666;
+  font-size: 36rpx;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+}
+
+.title-price {
   font-weight: bold;
+  color: #333;
+  font-size: 44rpx;
 }
 
-.van-cell__title {
-  text-align: left;
-  color: #999;
+van-goods-action button {
+  width: unset !important;
 }
 
-.van-cell__right-icon-wrap {
-  color: #333 !important;
+van-goods-action van-goods-action-button:nth-last-child(2) {
+  margin: 0rpx 5rpx 0rpx 10rpx;
 }
 
-.scroll-view_H {
-  height: 300rpx;
-  width: 100%;
-  white-space: nowrap;
+van-goods-action van-goods-action-button:last-child {
+  margin: 0rpx 10rpx 0rpx 5rpx;
 }
 
-.scroll-view-item_H {
-  width: 25%;
-  display: inline-block;
-  height: 100%;
+.myGoodsAction van-goods-action-button button {
+  border-radius: 0rpx !important;
+  background: unset;
+  color: #333;
+  border: 2px solid #333 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold !important;
 }
 
-.scroll-view-item_H image {
-  width: 100%;
-  height: 100%;
+.myGoodsAction van-goods-action-button:last-child button {
+  background-color: #333;
+  color: #fff;
+}
+
+.popup{
+  background-color: #eee;
+  height: 80vh;
 }
 
 .popup .popup-top {
   display: flex;
-  padding-bottom: 20rpx;
-  border-bottom: 1.5px dashed #eee;
+  padding: 20rpx;
+  background-color: #fff;
 }
 
 .popup .img-box {
-  height: 224rpx;
-  width: 350rpx;
-  margin: 20rpx;
+  height: 150rpx;
+  width: 150rpx;
+  margin-right: 20rpx;
+  border: 1px solid #eee;
 }
 
 .popup .img-box image {
@@ -83,66 +84,65 @@
   height: 100%;
 }
 
+.popup .price{
+  font-weight: bold;
+  font-size: 42rpx;
+  color: #333;
+}
+
 .popup .text-box {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  font-size: 28rpx;
+  color: #666;
 }
 
-.popup-bottom {
+.popup-middle {
+  padding: 20rpx 0rpx;
+  height: calc(80vh - 322rpx);
+  box-sizing: border-box;
+}
+
+.popup-middle .size-item {
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  font-size: 36rpx;
+}
+
+.popup-middle .price-item {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.popup .selected {
   padding: 20rpx;
+  background-color: #fff;
 }
 
-.type-box {
-  display: flex;
-  flex-wrap: wrap;
-  /* margin-right: 20rpx; */
-  margin-top: 20rpx;
+.border{
+  width: calc(100% - 10px);
+  height: 154rpx;
+  border: 2px solid #333;
+  position: absolute;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: all .2s;
 }
 
-.type-box>view {
-  padding: 10rpx 20rpx;
-  background-color: transparent;
-  margin-right: 20rpx;
-  margin-bottom: 20rpx;
-  border: 1.5px solid #333;
-  color: #333;
+.border.active{
+  opacity: 1;
 }
 
-.type-box>view.active{
+.popup .selectedBtn{
+  width: 100%;
+  border: none;
   background-color: #333;
   color: #fff;
+  border-radius: 0;
 }
 
-.popup-bottom button:not([size='mini']) {
-  width: 100%;
-  border-radius: 0rpx;
-  border-color: #333;
-  background-color: #333;
-}
-
-.action-button-index--van-goods-action-button--first.action-button-index--van-goods-action-button {
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-  background: transparent !important;
-  color: #333;
-  border: 2px solid #333 !important;
-  box-sizing: border-box !important;
-  margin-right: 10rpx;
-}
-
-.action-button-index--van-goods-action-button--first.action-button-index--van-goods-action-button view {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-}
-
-.action-button-index--van-goods-action-button.action-button-index--van-goods-action-button--danger {
-  border-top-right-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  background: #333;
-  margin-left: 10rpx;
+.size{
+  font-weight: bold;
+  color: #333!important;
 }

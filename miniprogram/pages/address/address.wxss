@@ -1,0 +1,52 @@
+/* miniprogram/pages/address/address.wxss */
+
+page {
+  background-color: #eee;
+}
+
+.address-box {
+  font-size: 28rpx;
+  background-color: #fff;
+}
+
+.address-box .box-top {
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.address-box .box-top .userInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.box-bottom {
+  padding: 20rpx;
+  padding-right: 0rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-bottom text {
+  font-size: 26rpx;
+}
+
+.box-bottom text:first-child {
+  color: #94d1ff;
+  padding: 20rpx;
+}
+
+.box-bottom text:last-child {
+  color: #ff5656;
+  padding: 20rpx;
+}
+
+.addAddress{
+  position: fixed!important;
+  bottom: 20rpx;
+  left: 20rpx;
+  right: 20rpx;
+  width: auto!important;
+}

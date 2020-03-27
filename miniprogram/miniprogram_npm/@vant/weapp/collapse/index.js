@@ -1,14 +1,11 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     relation: {
         name: 'collapse-item',
         type: 'descendant',
-        linked(child) {
-            this.children.push(child);
-        },
-        unlinked(child) {
-            this.children = this.children.filter((item) => item !== child);
-        }
+        current: 'collapse',
     },
     props: {
         value: {
@@ -24,21 +21,18 @@ VantComponent({
             value: true
         }
     },
-    beforeCreate() {
-        this.children = [];
-    },
     methods: {
-        updateExpanded() {
-            this.children.forEach((child) => {
+        updateExpanded: function () {
+            this.children.forEach(function (child) {
                 child.updateExpanded();
             });
         },
-        switch(name, expanded) {
-            const { accordion, value } = this.data;
+        switch: function (name, expanded) {
+            var _a = this.data, accordion = _a.accordion, value = _a.value;
             if (!accordion) {
                 name = expanded
                     ? (value || []).concat(name)
-                    : (value || []).filter((activeName) => activeName !== name);
+                    : (value || []).filter(function (activeName) { return activeName !== name; });
             }
             else {
                 name = expanded ? name : '';
