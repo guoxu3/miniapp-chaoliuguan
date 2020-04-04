@@ -109,6 +109,10 @@ Page({
 
   },
 
+  feedback: function(){
+    
+  },
+
   getUserInfo: function (e) {
     wx.showLoading({
       title: '登陆中',
@@ -142,6 +146,7 @@ Page({
                 userAvatar: userInfo.avatarUrl,
                 nickName: userInfo.nickName,
                 shopCart: [],
+                address: [],
                 time: new Date()
               }
             }).then(res => {

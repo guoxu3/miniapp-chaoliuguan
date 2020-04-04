@@ -1,8 +1,10 @@
 <!--miniprogram/pages/editAddress/editAddress.wxml-->
-<van-field value="{{ username }}" title-width="70px" label="收货人" placeholder="填写姓名" bind:click-icon="onClickIcon" />
-<van-field value="{{ password }}" title-width="70px" label="联系电话" type="number" placeholder="填写手机号" />
-<van-cell title="所在区域" is-link value="{{region[0].name}} {{region[1].name}} {{region[2].name}}" bind:click="onoff" />
-<textarea placeholder="请填写详细地址" value="{{addressDetail}}"></textarea>
+<van-field value="{{ address.name }}" data-item="name" title-width="70px" label="收货人" placeholder="填写姓名" bind:blur="onBlur" />
+<van-field value="{{ address.phone }}" data-item="phone" title-width="70px" label="联系电话" placeholder="填写手机号"  type="number" bind:blur="onBlur" />
+<van-cell title="所在区域" title-width="70px" is-link value="{{ address.region.length ? address.region[0].name + ' ' + address.region[1].name + ' ' + address.region[2].name : '请选择' }}" bind:click="onoff" />
+<!-- <textarea placeholder="请填写详细地址" value="{{address.dtaddress}}" data-item="dtaddress" bindblur="onBlur"></textarea> -->
+<van-field value="{{ address.dtaddress }}" data-item="dtaddress" placeholder="请填写详细地址" bind:blur="onBlur" type="textarea" autosize border="{{false}}" />
+
 <view class="getLocation" bindtap="test">自动检测</view>
 <van-button custom-class="saveAddress" color="#94d1ff" bind:click="saveAddress">保存地址</van-button>
 <van-popup show="{{ onoff }}" position="bottom" bind:close="onClose">

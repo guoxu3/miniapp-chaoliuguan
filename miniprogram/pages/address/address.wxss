@@ -7,6 +7,7 @@ page {
 .address-box {
   font-size: 28rpx;
   background-color: #fff;
+  margin-top: 20rpx;
 }
 
 .address-box .box-top {

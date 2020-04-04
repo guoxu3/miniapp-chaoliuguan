@@ -1,24 +1,26 @@
 <!--miniprogram/pages/address/address.wxml-->
 <view>
-  <van-radio-group value="{{ radio }}" bind:change="onChange">
-    <view class="address-box">
-      <view class="box-top">
-        <view class="userInfo">
-          <text>岑福宁</text>
-          <text>139****4601</text>
-        </view>
-        <view class="userAddress">
-          广西贺州市八步区信都镇大新街
-        </view>
-      </view>
-      <view class="box-bottom">
-        <van-radio checked-color="#94d1ff" name="1">默认地址</van-radio>
-        <view>
-          <text bindtap="addAddress">编辑</text>
-          <text>删除</text>
-        </view>
-      </view>
-    </view>
-  </van-radio-group>
-  <van-button custom-class="addAddress" color="#94d1ff" bind:click="addAddress">添加新地址</van-button>
+	<van-radio-group value="{{ defaultAddress }}" bind:change="onChange">
+		<block wx:for="{{address}}" wx:key="{{ item.index }}">
+			<view class="address-box">
+				<view class="box-top">
+					<view class="userInfo">
+						<text>{{ item.name }}</text>
+						<text>139****4601</text>
+					</view>
+					<view class="userAddress">
+						{{ item.dtaddress }}
+					</view>
+				</view>
+				<view class="box-bottom">
+					<van-radio checked-color="#94d1ff" name="{{item.index}}">默认地址</van-radio>
+					<view>
+						<text bindtap="editAddress" data-index="{{ item.index }}">编辑</text>
+						<text bindtap="delAddress" data-index="{{ item.index }}">删除</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</van-radio-group>
+	<van-button custom-class="addAddress" color="#94d1ff" bind:click="addAddress">添加新地址</van-button>
 </view>

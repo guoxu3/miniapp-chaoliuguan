@@ -1,78 +1,80 @@
 <!--pages/about/about.wxml-->
 <view class="about">
-  <button wx:if="{{ !logged }}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登陆</button>
-  <view class="top" wx:else>
-    <view class="card">
-      <view class="card-top">
-        <view class="msg">
-          <view class="head-img">
-            <image src="{{ userAvatar }}"></image>
-          </view>
-          <view>
-            <view class="user_name">{{ nickName }}</view>
-            <view class="user_vip">会员卡</view>
-          </view>
-        </view>
-        <view class="card-vip">
-          <image mode="aspectFit" src="./images/vip.png"></image>
-        </view>
-      </view>
-      <view class="card-bottom">
-        <view class="">606102557</view>
-      </view>
-    </view>
-  </view>
+	<button wx:if="{{ !logged }}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登陆</button>
+	<view class="top" wx:else>
+		<view class="card">
+			<view class="card-top">
+				<view class="msg">
+					<view class="head-img">
+						<image src="{{ userAvatar }}"></image>
+					</view>
+					<view>
+						<view class="user_name">{{ nickName }}</view>
+						<view class="user_vip">会员卡</view>
+					</view>
+				</view>
+				<view class="card-vip">
+					<image mode="aspectFit" src="./images/vip.png"></image>
+				</view>
+			</view>
+			<view class="card-bottom">
+				<view class="">606102557</view>
+			</view>
+		</view>
+	</view>
 
 </view>
 <view class="bottom">
-  <van-grid column-num="3" square>
-    <van-grid-item use-slot url="../order/order">
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_1.jpg" />
-      </view>
-      <view class="item-text">
-        <text>我的订单</text>
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_2.jpg" />
-      </view>
-      <view class="item-text">
-        <text>我的积分</text>
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_3.jpg" />
-      </view>
-      <view class="item-text">
-        <text>优惠券</text>
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot url="../address/address">
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_4.jpg" />
-      </view>
-      <view class="item-text">
-        <text>收货地址</text>
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_5.jpg" />
-      </view>
-      <view class="item-text">
-        <text>意见反馈</text>
-      </view>
-    </van-grid-item>
-    <van-grid-item use-slot>
-      <view class="item-img">
-        <image mode="widthFix" src="./images/icon_6.jpg" />
-      </view>
-      <view class="item-text">
-        <text>领取会员</text>
-      </view>
-    </van-grid-item>
-  </van-grid>
+	<van-grid column-num="3" square>
+		<van-grid-item use-slot url="../order/order">
+			<view class="item-img">
+				<image mode="widthFix" src="./images/icon_1.jpg" />
+			</view>
+			<view class="item-text">
+				<text>我的订单</text>
+			</view>
+		</van-grid-item>
+		<van-grid-item use-slot>
+			<view class="item-img">
+				<image mode="widthFix" src="./images/icon_2.jpg" />
+			</view>
+			<view class="item-text">
+				<text>我的积分</text>
+			</view>
+		</van-grid-item>
+		<van-grid-item use-slot>
+			<view class="item-img">
+				<image mode="widthFix" src="./images/icon_3.jpg" />
+			</view>
+			<view class="item-text">
+				<text>优惠券</text>
+			</view>
+		</van-grid-item>
+		<van-grid-item use-slot url="../address/address">
+			<view class="item-img">
+				<image mode="widthFix" src="./images/icon_4.jpg" />
+			</view>
+			<view class="item-text">
+				<text>收货地址</text>
+			</view>
+		</van-grid-item>
+		<van-grid-item use-slot>
+			<button class="feedback" open-type="feedback">
+				<view class="item-img">
+					<image mode="widthFix" src="./images/icon_5.jpg" />
+				</view>
+				<view class="item-text">
+					<text>意见反馈</text>
+				</view>
+			</button>
+		</van-grid-item>
+		<van-grid-item use-slot>
+			<view class="item-img">
+				<image mode="widthFix" src="./images/icon_6.jpg" />
+			</view>
+			<view class="item-text">
+				<text>领取会员</text>
+			</view>
+		</van-grid-item>
+	</van-grid>
 </view>

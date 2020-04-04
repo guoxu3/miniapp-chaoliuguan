@@ -1,6 +1,12 @@
 // miniprogram/pages/editAddress/editAddress.js
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 import area from '../../data/area.js';
+const app = getApp().globalData;
+const userInfo = app.userInfo;
+const db = wx.cloud.database();
+const commodity = db.collection('chaoliuguan');
+const _ = db.command;
+
 
 Page({
 
@@ -9,16 +15,27 @@ Page({
    */
   data: {
     areaList: area,
+    alt: true,
     onoff: false,
-    region: [{ name: '请选择' }],
-    addressDetail: ''
+    type: '',
+    address: {
+      name: '',
+      phone: '',
+      region: [],
+      dtaddress: ''
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.type = options.hasOwnProperty('index');
+    if(this.data.type) {
+      this.setData({
+        address: userInfo.address.find(item => item.index == options.index)
+      })
+    }
   },
 
   /**
@@ -70,6 +87,11 @@ Page({
 
   },
 
+  onBlur(e) {
+    this.data.address[e.currentTarget.dataset.item] = e.detail.value
+    console.log(this.data.address[e.currentTarget.dataset.item])
+  },
+
   onoff() {
     this.setData({
       onoff: true
@@ -77,14 +99,16 @@ Page({
   },
 
   onClose() {
-    this.setData({ onoff: false });
+    this.setData({
+      onoff: false
+    });
   },
 
   onConfirm(event) {
     console.log(event)
     this.setData({
       onoff: false,
-      region: event.detail.values
+      ["address.region"]: event.detail.values
     })
   },
 
@@ -94,16 +118,65 @@ Page({
     })
   },
 
-  bindRegionChange: function (e) {
-    this.setData({
-      region: e.detail.value
-    })
-  },
-
   saveAddress: function (e) {
-    wx.navigateBack({
-      delta: 1,
-    })
+    this.data.alt = true;
+    for (let item in this.data.address) {
+      console.log(this.data.address[item])
+      if (this.data.address[item] == false) {
+        this.data.alt = false;
+        break;
+      }
+    }
+
+    if (this.data.alt) {
+      if (this.data.type) {
+        const index = userInfo.address.findIndex(item => this.data.address.index == item.index);
+        const indexName = `address.${index}`;
+        commodity.doc(userInfo._id).update({
+          data: {
+            [indexName]:  this.data.address
+          },
+          success: res => {
+            userInfo.address[index] = this.data.address
+            wx.showToast({
+              title: '保存成功',
+              success() {
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }, 1500);
+              }
+            });
+          }
+        })
+      } else {
+        this.data.address.index = Date.parse(new Date());
+        commodity.doc(userInfo._id).update({
+          data: {
+            address: _.push(this.data.address)
+          },
+          success: res => {
+            userInfo.address.push(this.data.address);
+            wx.showToast({
+              title: '保存成功',
+              success() {
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                }, 1500);
+              }
+            });
+          }
+        })
+      }
+    } else {
+      wx.showToast({
+        title: '请填写完整',
+      });
+    }
+
   },
   test() {
     // wx.getLocation({
@@ -128,7 +201,7 @@ Page({
             const province_code = res.data.result.ad_info.adcode.substr(0, 3) + "000"
             console.log(province_code);
             this.setData({
-              region: [{
+              ["address.region"]: [{
                 code: province_code,
                 name: res.data.result.ad_info.province
               }, {
@@ -138,7 +211,7 @@ Page({
                 code: res.data.result.ad_info.adcode,
                 name: res.data.result.ad_info.district
               }],
-              addressDetail: res.data.result.address
+              ["address.dtaddress"]: res.data.result.address
             })
           }
         })
